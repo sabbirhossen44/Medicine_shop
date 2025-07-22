@@ -1,0 +1,5 @@
+admin:
+sabbir.dev41@gmail.com	sabbir123
+
+customer:
+sabbir.dev41@gmail.com	sabbir123

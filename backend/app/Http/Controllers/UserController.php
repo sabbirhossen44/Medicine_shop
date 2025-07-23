@@ -43,4 +43,49 @@ class UserController extends Controller
             'customer' => $customer,
         ]);
     }
+    public function user_update(Request $request, $id){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'number' => 'required',
+        ]);
+
+
+        if ($request->file('photo')) {
+            $old_photo = public_path('uploads/users/'.Customer::find($id)->photo);
+            if (Customer::find($id)->photo && file_exists($old_photo)) {
+                unlink($old_photo);
+            }
+            $photo = $request->file('photo');
+            $photo_name = "user_" . time() . uniqid() . '.' . $photo->getClientOriginalExtension();
+            $photo->move(public_path('uploads/users/'), $photo_name);
+            Customer::find($id)->update([
+                'name'=> $request->name,
+                'email'=> $request->email,
+                'number'=> $request->number,
+                'photo' => $photo_name,
+                'updated_at' => Carbon::now(),
+            ]);
+            return back()->with('user_update', 'User Updated Successfully');
+        } else {
+            Customer::find($id)->update([
+                'name'=> $request->name,
+                'email'=> $request->email,
+                'number'=> $request->number,
+                'updated_at' => Carbon::now(),
+            ]);
+            return back()->with('user_update', 'User Updated Successfully');
+        }
+        
+    }
+    public function user_delete($id){
+        $customer = Customer::find($id);
+        $old_photo = public_path('uploads/users/'.$customer->photo);
+        if (file_exists($old_photo )) {
+            unlink($old_photo );
+        }
+        $customer->delete();
+        return back()->with('user_delete','User Deleted Successfully!');
+
+    }
 }

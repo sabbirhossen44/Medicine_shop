@@ -26,13 +26,14 @@
                                     <td>{{$customer->email}}</td>
                                     <td>{{$customer->number}}</td>
                                     <td>
-                                        <img src="{{asset('uploads/users/'.$customer->photo)}}" alt="">
+                                        <img src="{{asset('uploads/users/' . $customer->photo)}}" alt="">
                                     </td>
                                     <td>
                                         <a href="{{route('user.edit', $customer->id)}}" class="btn btn-secondary btn-icon">
                                             <i data-feather="edit"></i>
                                         </a>
-                                        <a href="" class="btn btn-danger btn-icon">
+                                        <a href="" class="btn btn-danger btn-icon user_delete"
+                                            data-link="{{route('user.delete', $customer->id)}}">
                                             <i data-feather="trash"></i>
                                         </a>
                                     </td>
@@ -114,5 +115,39 @@
                 timer: 1500
             });
         @endif
+        @if (session('user_delete'))
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "{{session('user_delete')}}",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        @endif
+        $('.user_delete').click(function (e) {
+            e.preventDefault();
+            var link = $(this).attr('data-link');
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                    setTimeout(() => {
+                        window.location.href = link;
+                    }, 2000);
+                }
+            });
+        })
     </script>
 @endsection

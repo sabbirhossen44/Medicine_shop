@@ -9,12 +9,10 @@ import { toast } from 'react-toastify';
 
 const Navbar = () => {
     const { user , logout } = useContext(AdminAuthContext);
-    const [customerName, setCustomerName] = useState('');
+    const [customer, setCustomer] = useState('');
     useEffect(() => {
         if (user && user.admin && user.admin.customer) {
-            setCustomerName(user.admin.customer.name); 
-        } else {
-            setCustomerName('Sabbir Hossen');
+            setCustomer(user.admin.customer.photo); 
         }
     }, [user]);
     const exit = () =>{
@@ -75,12 +73,13 @@ const Navbar = () => {
                                 </span>
                                 <span>Screen</span>
                             </div>
-                            <div className="text-gray-600 border rounded-full text-lg px-5 py-2 border-gray-500 cursor-pointer hover:text-yellow-500 hover:border-yellow-500 transition duration-300 ease-in-out flex items-center gap-2 justify-center bg-green-700">
+                            <div className="text-gray-600 border rounded-full text-lg  border-gray-500 cursor-pointer hover:text-yellow-500 hover:border-yellow-500 transition duration-300 ease-in-out flex items-center gap-2 justify-center bg-green-700">
                                 {/* <span>
                                     <FontAwesomeIcon icon={faPersonWalkingArrowLoopLeft} className='size-6' />
                                 </span>
                                 <span>Return</span> */}
-                                <span className='text-xl font-bold text-white uppercase'>{customerName.charAt(0)}</span>
+                                {/* <span className='text-xl font-bold text-white uppercase'></span> */}
+                                <img src={customer} alt="" className='w-10 h-10'/>
                             </div>
 
                             <div className="text-red-600 border rounded-full text-md px-4 py-2 border-red-500 cursor-pointer hover:text-red-500 hover:border-red-500 transition duration-300 ease-in-out flex items-center gap-2" onClick={exit}>

@@ -7,42 +7,61 @@
                     <h4>New User</h4>
                 </div>
                 <div class="card-body">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="{{route('user.update', $customer->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="text" class="form-label">Name</label>
-                            <input type="text" name="name" id="" class="form-control" value="{{$customer -> name}}">
+                            <input type="text" name="name" id="" class="form-control" value="{{$customer->name}}">
                             @error('name')
                                 <strong class="text-danger">{{$message}}</strong>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" id="" class="form-control" value="{{$customer -> email}}">
+                            <input type="email" name="email" id="" class="form-control" value="{{$customer->email}}">
                             @error('email')
                                 <strong class="text-danger">{{$message}}</strong>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="number" class="form-label">Number</label>
-                            <input type="number" name="number" id="" class="form-control" value="{{$customer -> number}}">
+                            <input type="number" name="number" id="" class="form-control" value="{{$customer->number}}">
                             @error('number')
                                 <strong class="text-danger">{{$message}}</strong>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="photo" class="form-label">Photo</label>
-                            <input type="file" name="photo" id="" class="form-control">
+                            <input type="file" name="photo" id="" class="form-control"
+                                onchange="document.getElementById('userphoto').src = window.URL.createObjectURL(this.files[0])">
                             @error('photo')
                                 <strong class="text-danger">{{$message}}</strong>
                             @enderror
+                            <div class="mt-3">
+                                <img src="{{asset('uploads/users/' . $customer->photo)}}" class="w-20" id="userphoto" alt="">
+                            </div>
                         </div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Submit</button>
+                            <a href="{{route('user.list')}}" class="btn btn-secondary ml-3">Back</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('footer_scripts')
+    <script>
+        @if (session('user_update'))
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "{{session('user_update')}}",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        @endif
+    </script>
 @endsection

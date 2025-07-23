@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,13 @@ Route::post('/admin/photo/update', [AdminController::class, 'photo_update'])->na
 Route::get('/user/list', [UserController::class, 'user_list'])->name('user.list');
 Route::post('/user/store', [UserController::class, 'user_store'])->name('user.store');
 Route::get('/user/edit/{id}', [UserController::class, 'user_edit'])->name('user.edit');
+Route::post('/user/update/{id}', [UserController::class, 'user_update'])->name('user.update');
+Route::get('/user/delete/{id}', [UserController::class, 'user_delete'])->name('user.delete');
+
+
+// category
+Route::resource('/category', CategoryController::class);
+Route::get('/category/delete/{id}', [CategoryController::class, 'category_delete'])->name('category.delete');
 
 
 

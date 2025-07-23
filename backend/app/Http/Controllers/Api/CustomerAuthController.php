@@ -55,6 +55,8 @@ class CustomerAuthController extends Controller
 
         $token = $customer->createToken('CustomerToken')->plainTextToken;
 
+        $customer->photo = asset('uploads/users/'. $customer->photo);
+        
         return response()->json([
             'status' => 'success',
             'message' => 'Login successful',

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CustomerAuthController;
+use App\Http\Controllers\Api\FrontendController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,6 @@ Route::prefix('customer')->group(function(){
         Route::post('/logout', [CustomerAuthController::class, 'logout']);
     });
 });
+
+// category
+Route::get('/category', [FrontendController::class, 'category']);

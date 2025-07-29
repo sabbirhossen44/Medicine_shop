@@ -21,6 +21,10 @@
     <link rel="stylesheet" href="{{asset('backend')}}/fonts/feather-font/css/iconfont.css">
     <link rel="stylesheet" href="{{asset('backend')}}/vendors/flag-icon-css/css/flag-icon.min.css">
     <!-- endinject -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
+
+    
+
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{asset('backend')}}/css/demo_1/style.css">
     <!-- End layout styles -->
@@ -82,15 +86,15 @@
                                 <li class="nav-item">
                                     <a href="{{route('user.list')}}" class="nav-link">User List</a>
                                 </li>
-                                
+
                             </ul>
                         </div>
                     </li>
 
                     <li class="nav-item nav-category">Components</li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#category" role="button"
-                            aria-expanded="false" aria-controls="uiComponents">
+                        <a class="nav-link" data-toggle="collapse" href="#category" role="button" aria-expanded="false"
+                            aria-controls="uiComponents">
                             <i class="link-icon" data-feather="feather"></i>
                             <span class="link-title">Categorys</span>
                             <i class="link-arrow" data-feather="chevron-down"></i>
@@ -104,19 +108,35 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#advancedUI" role="button"
-                            aria-expanded="false" aria-controls="advancedUI">
-                            <i class="link-icon" data-feather="anchor"></i>
-                            <span class="link-title">Advanced UI</span>
+                        <a class="nav-link" data-toggle="collapse" href="#Brand" role="button" aria-expanded="false"
+                            aria-controls="forms">
+                            <i class="link-icon" data-feather="inbox"></i>
+                            <span class="link-title">Brand</span>
                             <i class="link-arrow" data-feather="chevron-down"></i>
                         </a>
-                        <div class="collapse" id="advancedUI">
+                        <div class="collapse" id="Brand">
                             <ul class="nav sub-menu">
                                 <li class="nav-item">
-                                    <a href="pages/advanced-ui/cropper.html" class="nav-link">Cropper</a>
+                                    <a href="{{route('brand.index')}}" class="nav-link">Brand List</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#product" role="button" aria-expanded="false"
+                            aria-controls="advancedUI">
+                            <i class="link-icon" data-feather="anchor"></i>
+                            <span class="link-title">Products</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="product">
+                            <ul class="nav sub-menu">
+                                <li class="nav-item">
+                                    <a href="{{route('product.create')}}" class="nav-link">Add product</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/advanced-ui/owl-carousel.html" class="nav-link">Owl carousel</a>
+                                    <a href="{{route('product.index')}}" class="nav-link">Product List</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="pages/advanced-ui/sweet-alert.html" class="nav-link">Sweet Alert</a>
@@ -124,30 +144,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#forms" role="button" aria-expanded="false"
-                            aria-controls="forms">
-                            <i class="link-icon" data-feather="inbox"></i>
-                            <span class="link-title">Forms</span>
-                            <i class="link-arrow" data-feather="chevron-down"></i>
-                        </a>
-                        <div class="collapse" id="forms">
-                            <ul class="nav sub-menu">
-                                <li class="nav-item">
-                                    <a href="pages/forms/basic-elements.html" class="nav-link">Basic Elements</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/forms/advanced-elements.html" class="nav-link">Advanced Elements</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/forms/editors.html" class="nav-link">Editors</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/forms/wizard.html" class="nav-link">Wizard</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#charts" role="button" aria-expanded="false"
                             aria-controls="charts">
@@ -663,6 +660,7 @@
     <script src="{{asset('backend')}}/vendors/feather-icons/feather.min.js"></script>
     <script src="{{asset('backend')}}/js/template.js"></script>
     <!-- endinject -->
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
     <!-- custom js for this page -->
     <script src="{{asset('backend')}}/js/dashboard.js"></script>
     <script src="{{asset('backend')}}/js/datepicker.js"></script>

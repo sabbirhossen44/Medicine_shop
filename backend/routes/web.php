@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +42,19 @@ Route::get('/user/delete/{id}', [UserController::class, 'user_delete'])->name('u
 // category
 Route::resource('/category', CategoryController::class);
 Route::get('/category/delete/{id}', [CategoryController::class, 'category_delete'])->name('category.delete');
+
+
+// brand
+Route::resource('/brand', BrandController::class);
+Route::get('/brand/delete/{id}', [BrandController::class, 'brand_delete'])->name('brand.delete');
+
+
+// product
+Route::resource('/product', ProductController::class);
+
+
+// inventory
+Route::get('/inventory/{id}', [InventoryController::class, 'inventroy_list'])->name('inventory.index');
 
 
 
